@@ -1,6 +1,6 @@
 import pygame
 
-from model import initialize_board, initialize_snake, set_new_position
+from model import initialize_board, initialize_snake, set_new_position, initialize_apple, eat_apple
 from view import draw
 
 step = 20
@@ -30,6 +30,8 @@ def turn(direction):
 head_direction = 0
 board = initialize_board()
 snake = initialize_snake(board)
+apple = initialize_apple(board)
+
 # print(board) # jak chcesz zobaczyc gdzie jest
 
 while True:
@@ -38,11 +40,12 @@ while True:
         if event.type == pygame.QUIT:
             exit(1)
     head_direction = turn(head_direction)
+    apple = eat_apple(board,snake,apple)
     set_new_position(head_direction,snake,board)
     screen.fill((255, 255, 255))
 
     draw(board, screen)
     pygame.display.flip()
-    counter = clock.tick(16)
+    counter = clock.tick(8)
 
 

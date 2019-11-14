@@ -32,7 +32,6 @@ def move_tail(snake):
 
 def set_new_position(direction, snake, board):
     head_x, head_y = snake[0]
-    board[(head_x, head_y)] = None
 
     if direction == 0: # w gore
         head_y = head_y - 1
@@ -45,7 +44,11 @@ def set_new_position(direction, snake, board):
 
     game_over(board, coordinate = (head_x, head_y))
     board[(head_x, head_y)] = "Snakehead"
+    for elem in snake:
+        board[elem] = None
+
     snake = [(head_x, head_y)] + move_tail(snake)
+
     for elem in snake:
         board[elem] = "Snakehead"
     return snake

@@ -4,8 +4,8 @@ from model import initialize_board, initialize_snake, set_new_position, initiali
 from view import draw
 
 step = 20
-width = 800
-height = 600
+width = 600
+height = 800
 dimensions = (width, height)
 
 pygame.init()
@@ -41,7 +41,7 @@ while True:
             exit(1)
     head_direction = turn(head_direction)
     apple = eat_apple(board,snake,apple)
-    set_new_position(head_direction,snake,board)
+    snake = set_new_position(head_direction,snake,board)
     screen.fill((255, 255, 255))
 
     draw(board, screen)
